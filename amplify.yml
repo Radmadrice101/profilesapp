@@ -4,8 +4,7 @@ frontend:
     preBuild:
       commands:
         - npm --prefix frontend install
-        # Copy the config file so CRA can import it from src/
-        - if [ -f amplify_outputs.json ]; then cp -v amplify_outputs.json frontend/src/amplify_outputs.json; else echo "ERROR: amplify_outputs.json missing at repo root"; exit 1; fi
+        - "if [ -f amplify_outputs.json ]; then cp -v amplify_outputs.json frontend/src/amplify_outputs.json; else echo \"MISSING amplify_outputs.json at repo root\"; exit 1; fi"
     build:
       commands:
         - npm --prefix frontend run build
