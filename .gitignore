@@ -3,3 +3,10 @@ node_modules
 .amplify
 amplify_outputs*
 amplifyconfiguration*
+
+# misc
+.DS_Store
+*.log
+*.tmp
+*.bak
+*.swp
