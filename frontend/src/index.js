@@ -9,12 +9,13 @@ import { Amplify } from 'aws-amplify';
 import '@aws-amplify/ui-react/styles.css';
 import { Authenticator } from '@aws-amplify/ui-react';
 
-// amplify_outputs.json is located one level up from /frontend
-;import outputs from './amplify_outputs.json';
-``
+// Import first, at top of file (CRA rule): the config file is inside src/
+import outputs from './amplify_outputs.json';
 
+// Configure Amplify before rendering
 Amplify.configure(outputs);
 
+// Render the app, wrapping with the Authenticator (inside render, not at top-level)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
