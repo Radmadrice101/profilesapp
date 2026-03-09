@@ -10,3 +10,4 @@ amplifyconfiguration*
 *.tmp
 *.bak
 *.swp
+!amplify_outputs.json
