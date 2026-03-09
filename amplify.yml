@@ -3,16 +3,13 @@ frontend:
   phases:
     preBuild:
       commands:
-        # Install deps in the frontend subfolder (no cd)
         - npm --prefix frontend install
-        # Ensure the config file exists where CRA imports it from
-        - if [ -f amplify_outputs.json ]; then cp amplify_outputs.json frontend/src/amplify_outputs.json; else echo "WARN: amplify_outputs.json not found at repo root"; fi
+        # Copy the config file so CRA can import it from src/
+        - if [ -f amplify_outputs.json ]; then cp -v amplify_outputs.json frontend/src/amplify_outputs.json; else echo "ERROR: amplify_outputs.json missing at repo root"; exit 1; fi
     build:
       commands:
-        # Build the CRA app from the repo root (no cd)
         - npm --prefix frontend run build
   artifacts:
-    # CRA outputs to 'build' inside 'frontend'
     baseDirectory: frontend/build
     files:
       - '**/*'
